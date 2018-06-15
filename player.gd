@@ -59,7 +59,7 @@ func _physics_process(delta):
 		if collision.collider.has_method("hit_by_stomp") and stomping:
 			collision.collider.call("hit_by_stomp")
 			collision.collider.add_collision_exception_with(self)
-			stomping = false
+			stomp_land()
 		elif collision.collider.has_method("deal_damage"):
 			linear_vel += collision.normal * DAMAGED_PUSHBACK
 			hit_by_damage(collision.collider.call("deal_damage"))
@@ -68,9 +68,8 @@ func _physics_process(delta):
 	if is_on_floor():
 		jumps = 0
 		if stomping:
-			$sound_stomp.play()
-			camera.shake(0.2, 15, 16)
-			stomping = false
+			stomp_land()
+
 		onair_time = 0
 
 	on_floor = onair_time < MIN_ONAIR_TIME
@@ -150,6 +149,10 @@ func hit_by_damage(damage):
 	if hit_points <= 0:
 		get_node("/root/global").setScene("res://main_menu.tscn")
 
+func stomp_land():
+	$sound_stomp.play()
+	camera.shake(0.2, 15, 16)
+	stomping = false
 
 func turn_invulnerable():
 	$color_anim.play("invulnerable")
