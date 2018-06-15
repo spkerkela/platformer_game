@@ -11,7 +11,9 @@ const SIDING_CHANGE_SPEED = 10
 const BULLET_VELOCITY = 1000
 const SHOOT_TIME_SHOW_WEAPON = 0.2
 const MAX_JUMPS = 2
-const MAX_HIT_POINTS = 2
+const MAX_HIT_POINTS = 3
+const INVULNERABLE_TIME = 1.5
+const DAMAGED_PUSHBACK = 250
 
 var hit_points = MAX_HIT_POINTS
 var linear_vel = Vector2()
@@ -20,6 +22,8 @@ var on_floor = false
 var shoot_time=99999 #time since last shot
 var jumps = 0
 var stomping = false
+var is_invulnerable = false
+var has_been_invulnerable = INVULNERABLE_TIME
 var anim=""
 
 #cache the sprite here for fast access (we will set scale to flip it often)
@@ -31,6 +35,14 @@ func _physics_process(delta):
 
 	onair_time += delta
 	shoot_time += delta
+	
+	if is_invulnerable:
+		has_been_invulnerable += delta
+		is_invulnerable = has_been_invulnerable < INVULNERABLE_TIME
+		if not is_invulnerable:
+			$color_anim.stop(true)
+			$color_anim.play("normal")
+
 
 	### MOVEMENT ###
 
@@ -49,6 +61,7 @@ func _physics_process(delta):
 			collision.collider.add_collision_exception_with(self)
 			stomping = false
 		elif collision.collider.has_method("deal_damage"):
+			linear_vel += collision.normal * DAMAGED_PUSHBACK
 			hit_by_damage(collision.collider.call("deal_damage"))
 
 	# Detect Floor
@@ -129,6 +142,15 @@ func _physics_process(delta):
 		$anim.play(anim)
 
 func hit_by_damage(damage):
-	hit_points -= damage
+	if not is_invulnerable:
+		hit_points -= damage
+		turn_invulnerable()
 	if hit_points <= 0:
 		get_node("/root/global").setScene("res://main_menu.tscn")
+
+
+func turn_invulnerable():
+	$color_anim.play("invulnerable")
+
+	has_been_invulnerable = 0
+	is_invulnerable = true

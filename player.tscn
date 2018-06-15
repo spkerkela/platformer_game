@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://robot_demo.png" type="Texture" id=2]
@@ -199,6 +199,44 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 44.4787
 
+[sub_resource type="Animation" id=12]
+
+resource_name = "invulnerable"
+length = 1.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.636719, 0.389244, 0.389244, 1 ), Color( 1, 1, 1, 1 ), Color( 0.635294, 0.388235, 0.388235, 1 ), Color( 1, 1, 1, 1 ), Color( 0.635294, 0.388235, 0.388235, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+
+resource_name = "normal"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
@@ -214,7 +252,8 @@ editor/display_folded = true
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
-frame = 22
+frame = 16
+_sections_unfolded = [ "Visibility" ]
 
 [node name="smoke" type="Node2D" parent="sprite" index="0"]
 
@@ -361,5 +400,16 @@ shape_visible = true
 passby_press = false
 action = "shoot"
 visibility_mode = 1
+
+[node name="color_anim" type="AnimationPlayer" parent="." index="7"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/invulnerable = SubResource( 12 )
+anims/normal = SubResource( 13 )
+blend_times = [  ]
 
 
