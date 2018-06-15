@@ -47,3 +47,6 @@ func _physics_process(delta):
 
 func hit_by_bullet():
 	state = STATE_KILLED
+
+func hit_by_stomp():
+	state = STATE_KILLED

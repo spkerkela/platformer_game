@@ -41,6 +41,12 @@ func _physics_process(delta):
 		linear_vel += delta * GRAVITY_VEC
 	# Move and Slide
 	linear_vel = move_and_slide(linear_vel, FLOOR_NORMAL, SLOPE_SLIDE_STOP)
+	var slide_count = get_slide_count()
+	for i in range(slide_count):
+		var collision = get_slide_collision(i)
+		if collision.collider.has_method("hit_by_stomp") and stomping:
+			collision.collider.call("hit_by_stomp")
+		
 	# Detect Floor
 	if is_on_floor():
 		jumps = 0
