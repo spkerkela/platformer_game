@@ -48,6 +48,8 @@ func _physics_process(delta):
 			collision.collider.call("hit_by_stomp")
 			collision.collider.add_collision_exception_with(self)
 			stomping = false
+		elif collision.collider.has_method("deal_damage"):
+			hit_by_damage(collision.collider.call("deal_damage"))
 
 	# Detect Floor
 	if is_on_floor():
@@ -126,7 +128,7 @@ func _physics_process(delta):
 		anim = new_anim
 		$anim.play(anim)
 
-func hit_by_damage():
-	hit_points -= 1
+func hit_by_damage(damage):
+	hit_points -= damage
 	if hit_points <= 0:
 		get_node("/root/global").setScene("res://main_menu.tscn")

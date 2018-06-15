@@ -210,6 +210,7 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 [node name="sprite" type="Sprite" parent="." index="0"]
 
+editor/display_folded = true
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
@@ -298,6 +299,7 @@ area_mask = 1
 
 [node name="ui" type="CanvasLayer" parent="." index="6"]
 
+editor/display_folded = true
 layer = 0
 offset = Vector2( 0, 0 )
 rotation = 0.0

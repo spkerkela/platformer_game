@@ -50,3 +50,9 @@ func hit_by_bullet():
 
 func hit_by_stomp():
 	state = STATE_KILLED
+	
+func deal_damage():
+	if state != STATE_KILLED:	
+		return 1
+	else:
+		return 0
