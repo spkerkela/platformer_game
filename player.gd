@@ -143,6 +143,8 @@ func _physics_process(delta):
 		$anim.play(anim)
 
 func hit_by_damage(damage):
+	if damage <= 0:
+		return
 	if not is_invulnerable:
 		hit_points -= damage
 		$sound_hurt.play()
