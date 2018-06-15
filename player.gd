@@ -144,6 +144,7 @@ func _physics_process(delta):
 func hit_by_damage(damage):
 	if not is_invulnerable:
 		hit_points -= damage
+		$sound_hurt.play()
 		turn_invulnerable()
 	if hit_points <= 0:
 		get_node("/root/global").setScene("res://main_menu.tscn")
