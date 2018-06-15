@@ -22,6 +22,7 @@ var anim=""
 
 #cache the sprite here for fast access (we will set scale to flip it often)
 onready var sprite = $sprite
+onready var camera = $camera
 
 func _physics_process(delta):
 	#increment counters
@@ -41,6 +42,8 @@ func _physics_process(delta):
 	# Detect Floor
 	if is_on_floor():
 		jumps = 0
+		if stomping:
+			camera.shake(0.2, 15, 16)
 		stomping = false
 		onair_time = 0
 
