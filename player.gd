@@ -56,13 +56,14 @@ func _physics_process(delta):
 	var slide_count = get_slide_count()
 	for i in range(slide_count):
 		var collision = get_slide_collision(i)
-		if collision.collider.has_method("hit_by_stomp") and stomping:
-			collision.collider.call("hit_by_stomp")
-			collision.collider.add_collision_exception_with(self)
+		var collider = collision.collider
+		if collider.has_method("hit_by_stomp") and stomping:
+			collider.call("hit_by_stomp")
+			collider.add_collision_exception_with(self)
 			stomp_land()
-		elif collision.collider.has_method("deal_damage"):
+		elif collider.has_method("deal_damage"):
 			linear_vel += collision.normal * DAMAGED_PUSHBACK
-			hit_by_damage(collision.collider.call("deal_damage"))
+			hit_by_damage(collider.call("deal_damage"))
 
 	# Detect Floor
 	if is_on_floor():
