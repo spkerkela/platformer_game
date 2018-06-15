@@ -46,7 +46,9 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision.collider.has_method("hit_by_stomp") and stomping:
 			collision.collider.call("hit_by_stomp")
-		
+			collision.collider.add_collision_exception_with(self)
+			stomping = false
+
 	# Detect Floor
 	if is_on_floor():
 		jumps = 0
@@ -69,13 +71,13 @@ func _physics_process(delta):
 	
 		target_speed *= WALK_SPEED
 		linear_vel.x = lerp(linear_vel.x, target_speed, 0.1)
-	
+
 		# Jumping
 		if (on_floor or jumps < MAX_JUMPS) and Input.is_action_just_pressed("jump"):
 			linear_vel.y = -JUMP_SPEED
 			jumps += 1
 			$sound_jump.play()
-	
+
 		# Shooting
 		if Input.is_action_just_pressed("shoot"):
 			var bullet = preload("res://bullet.tscn").instance()
@@ -127,4 +129,4 @@ func _physics_process(delta):
 func hit_by_damage():
 	hit_points -= 1
 	if hit_points <= 0:
-		prints("die")
+		get_node("/root/global").setScene("res://main_menu.tscn")
