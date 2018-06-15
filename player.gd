@@ -11,7 +11,9 @@ const SIDING_CHANGE_SPEED = 10
 const BULLET_VELOCITY = 1000
 const SHOOT_TIME_SHOW_WEAPON = 0.2
 const MAX_JUMPS = 2
+const MAX_HIT_POINTS = 2
 
+var hit_points = MAX_HIT_POINTS
 var linear_vel = Vector2()
 var onair_time = 0 #
 var on_floor = false
@@ -115,3 +117,8 @@ func _physics_process(delta):
 	if new_anim != anim:
 		anim = new_anim
 		$anim.play(anim)
+
+func hit_by_damage():
+	hit_points -= 1
+	if hit_points <= 0:
+		prints("die")
