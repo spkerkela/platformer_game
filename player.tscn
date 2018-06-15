@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://robot_demo.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://osb_jump.png" type="Texture" id=8]
 [ext_resource path="res://osb_fire.png" type="Texture" id=9]
 [ext_resource path="res://sound_hurt1.wav" type="AudioStream" id=10]
+[ext_resource path="res://sound_stomp.wav" type="AudioStream" id=11]
 
 [sub_resource type="Animation" id=1]
 
@@ -417,6 +418,17 @@ blend_times = [  ]
 
 stream = ExtResource( 10 )
 volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="sound_stomp" type="AudioStreamPlayer2D" parent="." index="9"]
+
+stream = ExtResource( 11 )
+volume_db = 1.0
 pitch_scale = 1.0
 autoplay = false
 max_distance = 2000.0

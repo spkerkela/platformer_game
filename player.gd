@@ -68,8 +68,9 @@ func _physics_process(delta):
 	if is_on_floor():
 		jumps = 0
 		if stomping:
+			$sound_stomp.play()
 			camera.shake(0.2, 15, 16)
-		stomping = false
+			stomping = false
 		onair_time = 0
 
 	on_floor = onair_time < MIN_ONAIR_TIME
