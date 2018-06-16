@@ -15,6 +15,8 @@ const MAX_HIT_POINTS = 3
 const INVULNERABLE_TIME = 1.5
 const DAMAGED_PUSHBACK = 250
 
+signal health_changed
+
 var hit_points = MAX_HIT_POINTS
 var linear_vel = Vector2()
 var onair_time = 0 #
@@ -147,6 +149,7 @@ func hit_by_damage(damage):
 		return
 	if not is_invulnerable:
 		hit_points -= damage
+		emit_signal("health_changed", hit_points)
 		$sound_hurt.play()
 		turn_invulnerable()
 	if hit_points <= 0:

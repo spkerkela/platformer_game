@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://robot_demo.png" type="Texture" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://osb_right.png" type="Texture" id=7]
 [ext_resource path="res://osb_jump.png" type="Texture" id=8]
 [ext_resource path="res://osb_fire.png" type="Texture" id=9]
-[ext_resource path="res://sound_hurt1.wav" type="AudioStream" id=10]
-[ext_resource path="res://sound_stomp.wav" type="AudioStream" id=11]
+[ext_resource path="res://hit_points_amount.gd" type="Script" id=10]
+[ext_resource path="res://sound_hurt1.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound_stomp.wav" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -340,7 +341,6 @@ area_mask = 1
 
 [node name="ui" type="CanvasLayer" parent="." index="6"]
 
-editor/display_folded = true
 layer = 0
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -403,6 +403,49 @@ passby_press = false
 action = "shoot"
 visibility_mode = 1
 
+[node name="hit_points_label" type="Label" parent="ui" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 13.0
+margin_top = 13.0
+margin_right = 132.0
+margin_bottom = 43.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Hit Points:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="hit_points_amount" type="Label" parent="ui" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 129.0
+margin_top = 14.0
+margin_right = 169.0
+margin_bottom = 39.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "3"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 10 )
+
 [node name="color_anim" type="AnimationPlayer" parent="." index="7"]
 
 root_node = NodePath("..")
@@ -416,7 +459,7 @@ blend_times = [  ]
 
 [node name="sound_hurt" type="AudioStreamPlayer2D" parent="." index="8"]
 
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -427,7 +470,7 @@ area_mask = 1
 
 [node name="sound_stomp" type="AudioStreamPlayer2D" parent="." index="9"]
 
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = 1.0
 pitch_scale = 1.0
 autoplay = false
@@ -435,5 +478,7 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[connection signal="health_changed" from="." to="ui/hit_points_amount" method="_on_player_health_changed"]
 
 
