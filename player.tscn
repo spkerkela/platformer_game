@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://robot_demo.png" type="Texture" id=2]
@@ -10,8 +10,9 @@
 [ext_resource path="res://osb_jump.png" type="Texture" id=8]
 [ext_resource path="res://osb_fire.png" type="Texture" id=9]
 [ext_resource path="res://hit_points_amount.gd" type="Script" id=10]
-[ext_resource path="res://sound_hurt1.wav" type="AudioStream" id=11]
-[ext_resource path="res://sound_stomp.wav" type="AudioStream" id=12]
+[ext_resource path="res://score_amount.gd" type="Script" id=11]
+[ext_resource path="res://sound_hurt1.wav" type="AudioStream" id=12]
+[ext_resource path="res://sound_stomp.wav" type="AudioStream" id=13]
 
 [sub_resource type="Animation" id=1]
 
@@ -446,6 +447,49 @@ lines_skipped = 0
 max_lines_visible = -1
 script = ExtResource( 10 )
 
+[node name="score_label" type="Label" parent="ui" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 14.0
+margin_top = 46.0
+margin_right = 75.0
+margin_bottom = 71.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Score:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="score_amount" type="Label" parent="ui" index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 85.0
+margin_top = 47.0
+margin_right = 125.0
+margin_bottom = 72.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 11 )
+
 [node name="color_anim" type="AnimationPlayer" parent="." index="7"]
 
 root_node = NodePath("..")
@@ -459,7 +503,7 @@ blend_times = [  ]
 
 [node name="sound_hurt" type="AudioStreamPlayer2D" parent="." index="8"]
 
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -470,7 +514,7 @@ area_mask = 1
 
 [node name="sound_stomp" type="AudioStreamPlayer2D" parent="." index="9"]
 
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = 1.0
 pitch_scale = 1.0
 autoplay = false
