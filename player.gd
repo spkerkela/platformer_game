@@ -61,7 +61,6 @@ func _physics_process(delta):
 		var collider = collision.collider
 		if collider.has_method("hit_by_stomp") and stomping:
 			collider.call("hit_by_stomp")
-			collider.add_collision_exception_with(self)
 			stomp_land()
 		elif collider.has_method("deal_damage"):
 			linear_vel += collision.normal * DAMAGED_PUSHBACK

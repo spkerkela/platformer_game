@@ -46,6 +46,7 @@ func _physics_process(delta):
 
 func _die():
 	state = STATE_KILLED
+	self.add_collision_exception_with(get_node("/root/stage/player"))
 
 func hit_by_bullet():
 	_die()
