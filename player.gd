@@ -150,6 +150,7 @@ func hit_by_damage(damage):
 	if not is_invulnerable:
 		hit_points -= damage
 		emit_signal("health_changed", hit_points)
+		camera.shake(0.2, 40, 16)
 		$sound_hurt.play()
 		turn_invulnerable()
 	if hit_points <= 0:

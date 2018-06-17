@@ -44,12 +44,14 @@ func _physics_process(delta):
 		anim = new_anim
 		$anim.play(anim)
 
+func _die():
+	state = STATE_KILLED
 
 func hit_by_bullet():
-	state = STATE_KILLED
+	_die()
 
 func hit_by_stomp():
-	state = STATE_KILLED
+	_die()
 	
 func deal_damage():
 	if state != STATE_KILLED:	
