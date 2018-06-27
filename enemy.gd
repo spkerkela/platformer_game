@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export(NodePath) var stage_path
 
 const GRAVITY_VEC = Vector2(0, 900)
 const FLOOR_NORMAL = Vector2(0, -1)
@@ -19,6 +20,7 @@ onready var detect_wall_left = $detect_wall_left
 onready var detect_floor_right = $detect_floor_right
 onready var detect_wall_right = $detect_wall_right
 onready var sprite = $sprite
+onready var stage = get_node(stage_path)
 
 func _physics_process(delta):
 	var new_anim = "idle"
@@ -45,8 +47,10 @@ func _physics_process(delta):
 		$anim.play(anim)
 
 func _die():
-	state = STATE_KILLED
-	self.add_collision_exception_with(get_node("/root/stage/player"))
+	if state != STATE_KILLED:
+		stage.enemy_died()
+		state = STATE_KILLED
+		self.add_collision_exception_with(get_node("/root/stage/player"))
 
 func hit_by_bullet():
 	_die()

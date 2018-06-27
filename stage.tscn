@@ -305,47 +305,58 @@ position = Vector2( 251.684, 1045.6 )
 
 [node name="enemy 5" parent="enemies" index="0" instance=ExtResource( 7 )]
 
-position = Vector2( 734.693, 1064.22 )
+position = Vector2( 734.693, 1065.22 )
+stage_path = NodePath("../..")
 
 [node name="enemy 6" parent="enemies" index="1" instance=ExtResource( 7 )]
 
 position = Vector2( 707.665, 1225.05 )
+stage_path = NodePath("../..")
 
 [node name="enemy 7" parent="enemies" index="2" instance=ExtResource( 7 )]
 
 position = Vector2( 1125.21, 1053.06 )
+stage_path = NodePath("../..")
 
 [node name="enemy 8" parent="enemies" index="3" instance=ExtResource( 7 )]
 
 position = Vector2( 1292.11, 1059.24 )
+stage_path = NodePath("../..")
 
 [node name="enemy 9" parent="enemies" index="4" instance=ExtResource( 7 )]
 
 position = Vector2( 968.927, 766.466 )
+stage_path = NodePath("../..")
 
 [node name="enemy 10" parent="enemies" index="5" instance=ExtResource( 7 )]
 
 position = Vector2( 3080.34, 1807.61 )
+stage_path = NodePath("../..")
 
 [node name="enemy 11" parent="enemies" index="6" instance=ExtResource( 7 )]
 
 position = Vector2( 1457.6, 631.956 )
+stage_path = NodePath("../..")
 
 [node name="enemy 12" parent="enemies" index="7" instance=ExtResource( 7 )]
 
 position = Vector2( 1264.06, 571.713 )
+stage_path = NodePath("../..")
 
 [node name="enemy 13" parent="enemies" index="8" instance=ExtResource( 7 )]
 
 position = Vector2( 3590.85, 1114.86 )
+stage_path = NodePath("../..")
 
 [node name="enemy 14" parent="enemies" index="9" instance=ExtResource( 7 )]
 
 position = Vector2( 3192.2, 1162.19 )
+stage_path = NodePath("../..")
 
 [node name="enemy 15" parent="enemies" index="10" instance=ExtResource( 7 )]
 
 position = Vector2( 2215.3, 1429.39 )
+stage_path = NodePath("../..")
 
 [node name="parallax_bg" parent="." index="5" instance=ExtResource( 8 )]
 
